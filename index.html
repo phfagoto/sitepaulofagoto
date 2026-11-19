@@ -210,7 +210,8 @@
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      object-position: center;
+      /* Ajuste do enquadramento: foco no terço superior para não cortar o topo da cabeça */
+      object-position: center 30%;
       filter: contrast(1.03) saturate(0.98);
       background: var(--ink-3);
     }
