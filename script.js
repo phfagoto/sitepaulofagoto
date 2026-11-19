@@ -5,7 +5,7 @@
      WHATSAPP
      ============================================================ */
   var TELEFONE = '5519971540808';
-  var MENSAGEM = 'Olá Paulo, vim pelo site e preciso do ser serviço como técnico em informática.';
+  var MENSAGEM = 'Olá Paulo, vim pelo site e preciso do seu serviço como técnico em informática.';
   var btn = document.getElementById('btnWhatsapp');
   if (btn) {
     btn.href = 'https://wa.me/' + TELEFONE + '?text=' + encodeURIComponent(MENSAGEM);
@@ -78,5 +78,51 @@
     document.addEventListener('pointerleave', function () {
       panel.style.transform = '';
     });
+  }
+
+  /* ============================================================
+     EFEITO DE TEXTO DIGITANDO
+     ============================================================ */
+  var typingText = document.getElementById('typing-text');
+  if (typingText && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var frases = [
+	  "Visita Técnica em Valinhos e Vinhedo/SP.",
+      "Formatação de Notebook e PC a domicílio.",
+      "Formatação para o Windows 10 e 11.",
+      "Instalação de programas e impressoras.",
+      "Desenvolvimento de Sites e Suporte Remoto."
+    ];
+    var fraseIndex = 0;
+    var charIndex = 0;
+    var apagando = false;
+    var velocidade = 80;
+
+    function type() {
+      var fraseAtual = frases[fraseIndex];
+      
+      if (apagando) {
+        typingText.textContent = fraseAtual.substring(0, charIndex - 1);
+        charIndex--;
+        velocidade = 40;
+      } else {
+        typingText.textContent = fraseAtual.substring(0, charIndex + 1);
+        charIndex++;
+        velocidade = 100;
+      }
+
+      if (!apagando && charIndex === fraseAtual.length) {
+        apagando = true;
+        velocidade = 2000; // Pausa no final da frase
+      } else if (apagando && charIndex === 0) {
+        apagando = false;
+        fraseIndex = (fraseIndex + 1) % frases.length;
+        velocidade = 500; // Pausa antes de começar a próxima
+      }
+
+      setTimeout(type, velocidade);
+    }
+    
+    // Inicia o efeito após um pequeno atraso para sincronizar com a animação CSS
+    setTimeout(type, 1500);
   }
 })();
