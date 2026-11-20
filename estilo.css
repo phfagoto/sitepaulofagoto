@@ -421,7 +421,28 @@ body::after {
 @media (max-width: 520px) {
   .panel { padding: 56px 28px 48px; }
   .role { letter-spacing: 0.15em; }
-  .btn { min-width: 0; width: 100%; padding: 16px 24px; letter-spacing: 0.16em; }
+  
+  /* Ajustes no botão para o celular */
+  .btn { 
+    min-width: 0; 
+    width: 100%; 
+    padding: 16px 12px; /* Diminuí as margens laterais internas */
+    letter-spacing: 0.08em; /* Diminuí o espaço entre as letras */
+    font-size: 0.70rem; /* Fonte levemente menor para caber */
+  }
+  
+  /* Impede o texto de quebrar em duas linhas */
+  .btn span {
+    white-space: nowrap; 
+  }
+  
+  /* Garante que o ícone não encolha e fique num tamanho bom */
+  .btn svg {
+    flex-shrink: 0; 
+    width: 20px; 
+    height: 20px;
+  }
+
   .corner { width: 14px; height: 14px; }
   .corner.tl, .corner.tr { top: 10px; }
   .corner.bl, .corner.br { bottom: 10px; }
