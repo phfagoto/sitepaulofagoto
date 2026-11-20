@@ -352,9 +352,9 @@ body::after {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--ink);
-  background: var(--accent);
-  border: 1px solid var(--accent);
+  color: #ffffff;
+  background: #128C7E;
+  border: 1px solid #128C7E;
   border-radius: 1px;
   cursor: pointer;
   overflow: hidden;
@@ -365,7 +365,7 @@ body::after {
     box-shadow 0.4s ease;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.15) inset,
-    0 10px 30px rgba(56, 189, 248, 0.18);
+    0 10px 30px rgba(18, 140, 126, 0.25);
 }
 
 .btn svg {
@@ -386,7 +386,7 @@ body::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--ink-2);
+  background: #075E54; /* Verde escuro do WhatsApp para o efeito hover */
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -395,10 +395,10 @@ body::after {
 
 .btn:hover,
 .btn:focus-visible {
-  color: var(--accent-soft);
+  color: #ffffff;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.05) inset,
-    0 14px 40px rgba(56, 189, 248, 0.28);
+    0 14px 40px rgba(18, 140, 126, 0.35);
   outline: none;
 }
 
