@@ -83,6 +83,22 @@
     </article>
   </main>
 
+  <!-- Modal de Aviso Personalizado -->
+  <div class="modal-overlay" id="modalAviso" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h2 class="modal-title" id="modalTitle">Aviso <em>Importante</em></h2>
+      <div class="modal-content">
+        <p>O atendimento é exclusivo para as cidades de <strong>Valinhos/SP</strong> e <strong>Vinhedo/SP</strong>.</p>
+        <p>É necessário ser <strong>maior de 18 anos</strong>.</p>
+        <p>Você confirma que reside em uma dessas cidades e é maior de 18 anos?</p>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn cancel" id="btnCancelar">Cancelar</button>
+        <button class="modal-btn confirm" id="btnConfirmar">Sim, confirmar</button>
+      </div>
+    </div>
+  </div>
+
   <!-- JS externo (defer para não bloquear render) -->
   <script src="script.js" defer></script>
 

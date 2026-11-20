@@ -2,13 +2,48 @@
   'use strict';
 
   /* ============================================================
-     WHATSAPP
+     WHATSAPP (COM MODAL PERSONALIZADO)
      ============================================================ */
   var TELEFONE = '5519971540808';
   var MENSAGEM = 'Olá Paulo, vim pelo site e preciso do seu serviço como técnico em informática.';
   var btn = document.getElementById('btnWhatsapp');
+  
   if (btn) {
-    btn.href = 'https://wa.me/' + TELEFONE + '?text=' + encodeURIComponent(MENSAGEM);
+    var whatsappUrl = 'https://wa.me/' + TELEFONE + '?text=' + encodeURIComponent(MENSAGEM);
+    btn.href = whatsappUrl;
+
+    // Elementos do Modal
+    var modal = document.getElementById('modalAviso');
+    var btnCancelar = document.getElementById('btnCancelar');
+    var btnConfirmar = document.getElementById('btnConfirmar');
+
+    // Abre o modal ao clicar no botão do WhatsApp
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+    });
+
+    // Fecha o modal ao clicar em "Cancelar"
+    btnCancelar.addEventListener('click', function () {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+    });
+
+    // Abre o WhatsApp e fecha o modal ao clicar em "Confirmar"
+    btnConfirmar.addEventListener('click', function () {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      window.open(whatsappUrl, '_blank');
+    });
+
+    // Fecha o modal se o usuário clicar fora da caixinha
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
   }
 
   /* ============================================================
