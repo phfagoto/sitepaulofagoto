@@ -2,6 +2,89 @@
   'use strict';
 
   /* ============================================================
+     CONFIGURAÇÕES GERAIS DO SITE (EDITE AQUI)
+     ============================================================ */
+  var SITE_CONFIG = {
+    // 1. FAVICON: Coloque o nome do seu arquivo de ícone aqui.
+    favicon: "favicon.ico", 
+
+    // 2. E-MAIL DE CONTATO:
+    email: "adm@paulofagoto.com.br", 
+
+    // 3. MENU DE NAVEGAÇÃO: Adicione novas páginas aqui.
+    // Para adicionar uma nova, copie uma linha inteira, cole abaixo e mude o nome e o link.
+    // Não esqueça da vírgula no final da linha anterior!
+    paginas: [
+      { nome: "Início", link: "index.html" }
+      // Exemplo de como ficará no futuro:
+      // ,{ nome: "Serviços", link: "servicos.html" }
+      // ,{ nome: "Sobre", link: "sobre.html" }
+    ],
+
+    // 4. REDES SOCIAIS (Rodapé): Adicione seus links aqui.
+    // O "icone" pode ser um emoji (como 💬 ou 📸) ou o nome da rede.
+    redes: [
+      // O WhatsApp foi removido. Quando quiser adicionar Instagram, Facebook, etc, use o exemplo abaixo:
+      // { nome: "Instagram", icone: "📸", link: "https://instagram.com/seu-perfil" }
+    ]
+  };
+
+  /* ============================================================
+     INJETAR FAVICON
+     ============================================================ */
+  if (SITE_CONFIG.favicon) {
+    var link = document.createElement('link');
+    link.rel = 'icon';
+    link.type = 'image/x-icon';
+    link.href = SITE_CONFIG.favicon;
+    document.head.appendChild(link);
+  }
+
+  /* ============================================================
+     INJETAR MENU DE NAVEGAÇÃO
+     ============================================================ */
+  var header = document.getElementById('global-header');
+  if (header) {
+    var navHTML = '<nav class="global-nav"><ul>';
+    SITE_CONFIG.paginas.forEach(function (pagina) {
+      // Descobre em qual página o usuário está para pintar o link de azul
+      var isActive = window.location.pathname.endsWith(pagina.link) || 
+                     (window.location.pathname === '/' && pagina.link === 'index.html') ||
+                     (window.location.pathname === '/index.html' && pagina.link === 'index.html');
+      var activeClass = isActive ? 'class="active"' : '';
+      
+      navHTML += '<li><a href="' + pagina.link + '" ' + activeClass + '>' + pagina.nome + '</a></li>';
+    });
+    navHTML += '</ul></nav>';
+    header.innerHTML = navHTML;
+  }
+
+  /* ============================================================
+     INJETAR RODAPÉ
+     ============================================================ */
+  var footer = document.getElementById('global-footer');
+  if (footer) {
+    var footerHTML = '<div class="footer-content">';
+    
+    // E-mail
+    if (SITE_CONFIG.email) {
+      footerHTML += '<p class="footer-email"><a href="mailto:' + SITE_CONFIG.email + '">' + SITE_CONFIG.email + '</a></p>';
+    }
+    
+    // Redes Sociais
+    if (SITE_CONFIG.redes && SITE_CONFIG.redes.length > 0) {
+      footerHTML += '<div class="footer-social">';
+      SITE_CONFIG.redes.forEach(function (rede) {
+        footerHTML += '<a href="' + rede.link + '" target="_blank" rel="noopener noreferrer">' + rede.icone + ' ' + rede.nome + '</a>';
+      });
+      footerHTML += '</div>';
+    }
+    
+    footerHTML += '</div>';
+    footer.innerHTML = footerHTML;
+  }
+
+  /* ============================================================
      WHATSAPP (COM MODAL PERSONALIZADO)
      ============================================================ */
   var TELEFONE = '5519971540808';
@@ -12,32 +95,27 @@
     var whatsappUrl = 'https://wa.me/' + TELEFONE + '?text=' + encodeURIComponent(MENSAGEM);
     btn.href = whatsappUrl;
 
-    // Elementos do Modal
     var modal = document.getElementById('modalAviso');
     var btnCancelar = document.getElementById('btnCancelar');
     var btnConfirmar = document.getElementById('btnConfirmar');
 
-    // Abre o modal ao clicar no botão do WhatsApp
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
     });
 
-    // Fecha o modal ao clicar em "Cancelar"
     btnCancelar.addEventListener('click', function () {
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
     });
 
-    // Abre o WhatsApp e fecha o modal ao clicar em "Confirmar"
     btnConfirmar.addEventListener('click', function () {
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
       window.open(whatsappUrl, '_blank');
     });
 
-    // Fecha o modal se o usuário clicar fora da caixinha
     modal.addEventListener('click', function (e) {
       if (e.target === modal) {
         modal.classList.remove('active');
@@ -121,7 +199,7 @@
   var typingText = document.getElementById('typing-text');
   if (typingText && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var frases = [
-	  "Visita Técnica em Valinhos e Vinhedo/SP.",
+      "Visita Técnica em Valinhos e Vinhedo/SP.",
       "Formatação de Notebook e PC a domicílio.",
       "Formatação para o Windows 10 e 11.",
       "Instalação de programas e impressoras.",
@@ -147,17 +225,16 @@
 
       if (!apagando && charIndex === fraseAtual.length) {
         apagando = true;
-        velocidade = 2000; // Pausa no final da frase
+        velocidade = 2000;
       } else if (apagando && charIndex === 0) {
         apagando = false;
         fraseIndex = (fraseIndex + 1) % frases.length;
-        velocidade = 500; // Pausa antes de começar a próxima
+        velocidade = 500;
       }
 
       setTimeout(type, velocidade);
     }
     
-    // Inicia o efeito após um pequeno atraso para sincronizar com a animação CSS
     setTimeout(type, 1500);
   }
 })();

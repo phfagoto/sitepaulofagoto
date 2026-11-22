@@ -15,15 +15,15 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Adicionado a fonte Fira Code para o visual de programador -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
-
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>" />
 
   <!-- CSS externo -->
   <link rel="stylesheet" href="estilo.css" />
 </head>
 <body>
+
+  <!-- O script vai colocar o Menu aqui automaticamente -->
+  <header id="global-header"></header>
 
   <div class="spotlight" id="spotlight" aria-hidden="true"></div>
   <div class="grid-lines" aria-hidden="true"></div>
@@ -59,7 +59,6 @@
 
       <p class="role"><strong>Técnico em Informática</strong></p>
       
-      <!-- Novo texto animado de terminal -->
       <div class="typing-container">
         <span id="typing-text"></span><span class="cursor">|</span>
       </div>
@@ -83,6 +82,9 @@
     </article>
   </main>
 
+  <!-- O script vai colocar o Rodapé aqui automaticamente -->
+  <footer id="global-footer"></footer>
+
   <!-- Modal de Aviso Personalizado -->
   <div class="modal-overlay" id="modalAviso" aria-hidden="true">
     <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -99,7 +101,7 @@
     </div>
   </div>
 
-  <!-- JS externo (defer para não bloquear render) -->
+  <!-- JS externo -->
   <script src="script.js" defer></script>
 
 </body>
