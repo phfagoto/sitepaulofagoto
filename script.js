@@ -8,7 +8,10 @@
     // 1. FAVICON: Coloque o nome do seu arquivo de ícone aqui.
     favicon: "favicon.ico", 
 
-    // 2. E-MAIL DE CONTATO:
+    // 2. GOOGLE ANALYTICS (ID de métrica):
+    googleAnalyticsId: "G-TYPXSYT58D",
+
+    // 3. E-MAIL DE CONTATO:
     email: "adm@paulofagoto.com.br", 
 
     // 3. MENU DE NAVEGAÇÃO: Adicione novas páginas aqui.
@@ -38,6 +41,21 @@
     link.type = 'image/x-icon';
     link.href = SITE_CONFIG.favicon;
     document.head.appendChild(link);
+  }
+
+  /* ============================================================
+     INJETAR GOOGLE ANALYTICS
+     ============================================================ */
+  if (SITE_CONFIG.googleAnalyticsId) {
+    var gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + SITE_CONFIG.googleAnalyticsId;
+    document.head.appendChild(gaScript);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', SITE_CONFIG.googleAnalyticsId);
   }
 
   /* ============================================================
